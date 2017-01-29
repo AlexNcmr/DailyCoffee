@@ -1,0 +1,22 @@
+This is the repo for my personal page.
+
+The repo is named after my app "DailyCoffee" which is in the top directory.
+
+DailyCoffee is an app written using Django
+
+It asks the user for their: 
+  Kindle Email (which can be found on the amazon support website)
+  Personal Email
+  Content preference: Hacker News, or a subreddit. 
+  
+The script then uses amazon's ability to send docs to your kindle via email attachment to put the top 10 links in your kindle
+Read more here: https://www.amazon.com/gp/sendtokindle/email
+
+  
+DailyCoffee/scripts holds the python3 scripts which actually do the web scraping to get the links.
+
+Thanks for checking out my app!
+-Alex
+  
+  
+  
