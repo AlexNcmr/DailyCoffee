@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import UserForm
 
-from .scripts.top10Soupify import HNTop10
+from .scripts import *
 
 def index(request):
     return HttpResponse("Daily Coffee index! test test test")
@@ -18,7 +18,7 @@ def submit(request):
         if form.is_valid():
             #if user asked for hacker news links:
             if form.cleaned_data['data_source'] == 'HN':
-                links = HNTop10()
+                links = top10Soupify.HNTop10()
             else:
                 #user asked for reddit links
 
@@ -26,8 +26,9 @@ def submit(request):
 
                 #check that the subreddit is valid
                 links = redditTop10(subreddit)
-            #join all links for testing
-            linkString = ', '.join(links)
+
+            emailInterface.initialize_and_send(form.cleaned_data['kindle_email'], links)
+
             return render(request, 'dailyCoffee/finished.html', {'form': form})
     else:
         form = UserForm()

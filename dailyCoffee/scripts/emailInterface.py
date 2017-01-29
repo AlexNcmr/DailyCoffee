@@ -11,7 +11,7 @@ import base64
 
 try:
     import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+    flags = tools.argparser.parse_args([])
 except ImportError:
     flags = None
 
@@ -67,13 +67,11 @@ def send_message(service, message):
         return message
 
 
-
-def main():
+def initialize_and_send(user_email, links):
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('gmail', 'v1', http=http)
+    messageBody = '\n'.join(links)
 
-    mimeMessage = create_message("alexjnewcomer@gmail.com", "alexjnewcomer@gmail.com", "test", "test!")
+    mimeMessage = create_message("DailyCoffeeDelivery@gmail.com", "alexjnewcomer@gmail.com", "test", messageBody )
     mimeMessage = send_message(service, mimeMessage)
-if __name__ == '__main__':
-    main()
