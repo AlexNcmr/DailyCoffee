@@ -28,8 +28,7 @@ def submit(request):
                 links = redditTop10(subreddit)
             #join all links for testing
             linkString = ', '.join(links)
-            return HttpResponse(linkString)
-            #return HttpResponseRedirect('/success/')
+            return render(request, 'dailyCoffee/finished.html', {'form': form})
     else:
         form = UserForm()
     return render(request, 'dailyCoffee/submit.html', {'form': form})
